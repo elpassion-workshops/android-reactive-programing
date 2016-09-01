@@ -6,7 +6,11 @@ class Observable<T>(val executor: Executor, val provider: Provider<T>) {
 
     fun subscribe(onSuccess: Callback<T>, onError: Callback<String>) {
         executor.execute {
-            onSuccess.call(provider.provide())
+            try {
+                onSuccess.call(provider.provide())
+            } catch(e: Exception) {
+                onError.call(e.message)
+            }
         }
     }
 

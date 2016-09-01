@@ -1,12 +1,14 @@
 package com.elpassion.whyrx
 
+import com.nhaarman.mockito_kotlin.mock
+import com.nhaarman.mockito_kotlin.verify
 import org.junit.Assert
-import org.junit.Ignore
 import org.junit.Test
 
 class ReactiveExampleTest {
 
     val calculator = ReactiveExample(SynchronousExecutor())
+    val errorCallback = mock<Callback<String>>()!!
 
     @Test
     fun shouldCalculateLogBase10Twice() {
@@ -14,10 +16,15 @@ class ReactiveExampleTest {
     }
 
     @Test
-    @Ignore
-    fun shouldReturnExceptionWhenCalculationFails() {
-        calculator.calculate(0.8)
-        calculator.calculate(-0.8)
+    fun shouldReturnExceptionWhenSecondCalculationFails() {
+        calculator.calculate(-0.8).subscribe(emptyCallback(), errorCallback)
+        verify(errorCallback).call("Illegal argument")
+    }
+
+    @Test
+    fun shouldReturnExceptionWhenFirstCalculationFails() {
+        calculator.calculate(-0.8).subscribe(emptyCallback(), errorCallback)
+        verify(errorCallback).call("Illegal argument")
     }
 
     private fun <T> assertionCallback(expected: T) = Callback<T> { result ->
