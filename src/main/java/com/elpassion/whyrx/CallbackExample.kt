@@ -7,7 +7,7 @@ class CallbackExample(val executor: Executor) {
     fun calculate(input: Double, resultCallback: Callback<Double>, errorCallback: Callback<String>) {
         calculateLog10(input, Callback {
             calculateLog10(it, resultCallback, errorCallback)
-        }, Callback {  })
+        }, errorCallback)
     }
 
     fun calculateLog10(input: Double, resultCallback: Callback<Double>, errorCallback: Callback<String>) {

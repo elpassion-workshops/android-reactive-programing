@@ -15,6 +15,7 @@ class CallbackExampleTest {
     @Test
     fun shouldReturnExceptionWhenCalculationFails() {
         calculator.calculate(0.8, emptyCallback(), assertionCallback("Illegal argument"))
+        calculator.calculate(-0.8, emptyCallback(), assertionCallback("Illegal argument"))
     }
 
     private fun <T> assertionCallback(expected: T) = Callback<T> { result ->
