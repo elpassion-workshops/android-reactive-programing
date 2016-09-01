@@ -1,26 +1,31 @@
 package com.elpassion.whyrx
 
-import org.junit.Assert
+import com.nhaarman.mockito_kotlin.any
+import com.nhaarman.mockito_kotlin.mock
+import com.nhaarman.mockito_kotlin.verify
 import org.junit.Test
 
 class CallbackExampleTest {
 
     val calculator = CallbackExample(SynchronousExecutor())
+    val callback = mock<Callback<Double>>()!!
+    val errorCallback = mock<Callback<Exception>>()!!
 
     @Test
     fun shouldCalculateLogBase10Twice() {
-        calculator.calculate(10000000000.0, assertionCallback(1.0), emptyCallback())
+        calculator.calculate(10000000000.0, callback, errorCallback)
+        verify(callback).call(1.0)
     }
 
     @Test
-    fun shouldReturnExceptionWhenCalculationFails() {
-        calculator.calculate(0.8, emptyCallback(), assertionCallback("Illegal argument"))
-        calculator.calculate(-0.8, emptyCallback(), assertionCallback("Illegal argument"))
+    fun shouldReturnExceptionWhenFirstCalculationFails() {
+        calculator.calculate(-0.8, callback, errorCallback)
+        verify(errorCallback).call(any())
     }
 
-    private fun <T> assertionCallback(expected: T) = Callback<T> { result ->
-        Assert.assertEquals(expected, result)
+    @Test
+    fun shouldReturnExceptionWhenSecondCalculationFails() {
+        calculator.calculate(0.8, callback, errorCallback)
+        verify(errorCallback).call(any())
     }
-
-    private fun <T> emptyCallback() = Callback<T> { }
 }
