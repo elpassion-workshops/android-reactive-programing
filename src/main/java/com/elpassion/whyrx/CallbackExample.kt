@@ -4,9 +4,9 @@ import java.util.concurrent.Executor
 
 class CallbackExample(val executor: Executor) {
 
-    fun calculate(resultCallback: Callback<Int>) {
+    fun calculate(input: Double, resultCallback: Callback<Double>) {
         executor.execute {
-            resultCallback.call(2)
+            resultCallback.call(Math.log10(Math.log10(input)))
         }
     }
 }
