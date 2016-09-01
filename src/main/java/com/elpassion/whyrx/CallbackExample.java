@@ -2,10 +2,10 @@ package com.elpassion.whyrx;
 
 import java.util.concurrent.Executor;
 
-public class JavaCallbackExample {
+public class CallbackExample {
     private final Executor executor;
 
-    public JavaCallbackExample(Executor executor) {
+    public CallbackExample(Executor executor) {
         this.executor = executor;
     }
 

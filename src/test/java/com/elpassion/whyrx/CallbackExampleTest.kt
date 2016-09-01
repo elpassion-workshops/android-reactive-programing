@@ -5,9 +5,9 @@ import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
 import org.junit.Test
 
-class JavaCallbackExampleTest {
+class CallbackExampleTest {
 
-    val calculator = JavaCallbackExample(SynchronousExecutor())
+    val calculator = CallbackExample(SynchronousExecutor())
     val callback = mock<Callback<Double>>()!!
     val errorCallback = mock<Callback<Exception>>()!!
 
