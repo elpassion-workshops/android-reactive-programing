@@ -21,4 +21,9 @@ class CallbackExampleTest {
     fun shouldThrowExceptionWhenFirstCalculationOfLog10Fails() {
         calculator.calculate(-1.0)
     }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun shouldThrowExceptionWhenSecondCalculationOfLog10Fails() {
+        calculator.calculate(0.5)
+    }
 }
