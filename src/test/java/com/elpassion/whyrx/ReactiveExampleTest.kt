@@ -9,7 +9,7 @@ class ReactiveExampleTest {
 
     val onSuccess = mock<Callback<Double>>()
     val onError = mock<Callback<Throwable>>()
-    val calculator = ReactiveExample()
+    val calculator = ReactiveExample(SynchronousExecutor())
 
     @Test
     fun shouldReturn0ForInputEquals10() {
