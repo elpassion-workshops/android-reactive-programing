@@ -3,11 +3,7 @@ package com.elpassion.whyrx;
 public class CallbackExample {
 
     void calculate(Double input, final Callback<Double> onSuccess, final Callback<Throwable> onError) {
-        calculateLog10(input, new Callback<Double>() {
-            public void call(Double result) {
-                calculateLog10(result, onSuccess, onError);
-            }
-        }, onError);
+        calculateLog10(input, result -> calculateLog10(result, onSuccess, onError), onError);
     }
 
     private void calculateLog10(Double input, Callback<Double> onSuccess, Callback<Throwable> onError) {
