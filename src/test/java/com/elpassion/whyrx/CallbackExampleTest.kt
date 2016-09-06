@@ -9,7 +9,7 @@ class CallbackExampleTest {
 
     val onSuccess = mock<Callback<Double>>()
     val onError = mock<Callback<Throwable>>()
-    val calculator = CallbackExample()
+    val calculator = CallbackExample(SynchronousExecutor())
 
     @Test
     fun shouldReturn0ForInputEquals10() {
