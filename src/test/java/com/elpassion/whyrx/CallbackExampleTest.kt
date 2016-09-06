@@ -16,4 +16,9 @@ class CallbackExampleTest {
     fun shouldReturn1ForInputEquals1AndTen0s() {
         Assert.assertEquals(1.0, calculator.calculate(10000000000.0), Double.MIN_VALUE)
     }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun shouldThrowExceptionWhenFirstCalculationOfLog10Fails() {
+        calculator.calculate(-1.0)
+    }
 }
