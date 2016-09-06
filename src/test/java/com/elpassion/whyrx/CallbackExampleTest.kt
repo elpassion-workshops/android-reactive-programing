@@ -5,8 +5,10 @@ import org.junit.Test
 
 class CallbackExampleTest {
 
+    val calculator = CallbackExample()
+
     @Test
-    fun shouldPass() {
-        Assert.assertTrue(calculate())
+    fun shouldReturn1ForInputEquals1() {
+        Assert.assertEquals(1.0, calculator.calculate(1.0), Double.MIN_VALUE)
     }
 }
