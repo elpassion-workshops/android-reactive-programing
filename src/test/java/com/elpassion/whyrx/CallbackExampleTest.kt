@@ -1,29 +1,37 @@
 package com.elpassion.whyrx
 
-import org.junit.Assert
+import com.nhaarman.mockito_kotlin.any
+import com.nhaarman.mockito_kotlin.mock
+import com.nhaarman.mockito_kotlin.verify
 import org.junit.Test
 
 class CallbackExampleTest {
 
+    val onSuccess = mock<Callback<Double>>()
+    val onError = mock<Callback<Throwable>>()
     val calculator = CallbackExample()
 
     @Test
     fun shouldReturn0ForInputEquals10() {
-        Assert.assertEquals(0.0, calculator.calculate(10.0), Double.MIN_VALUE)
+        calculator.calculate(10.0, onSuccess, onError)
+        verify(onSuccess).call(0.0)
     }
 
     @Test
     fun shouldReturn1ForInputEquals1AndTen0s() {
-        Assert.assertEquals(1.0, calculator.calculate(10000000000.0), Double.MIN_VALUE)
+        calculator.calculate(10000000000.0, onSuccess, onError)
+        verify(onSuccess).call(1.0)
     }
 
-    @Test(expected = IllegalArgumentException::class)
+    @Test
     fun shouldThrowExceptionWhenFirstCalculationOfLog10Fails() {
-        calculator.calculate(-1.0)
+        calculator.calculate(-1.0, onSuccess, onError)
+        verify(onError).call(any())
     }
 
-    @Test(expected = IllegalArgumentException::class)
+    @Test
     fun shouldThrowExceptionWhenSecondCalculationOfLog10Fails() {
-        calculator.calculate(0.5)
+        calculator.calculate(0.5, onSuccess, onError)
+        verify(onError).call(any())
     }
 }
