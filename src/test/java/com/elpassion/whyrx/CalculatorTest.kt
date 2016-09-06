@@ -3,9 +3,9 @@ package com.elpassion.whyrx
 import org.junit.Assert
 import org.junit.Test
 
-class CallbackExampleTest {
+class CalculatorTest {
 
-    val calculator = CallbackExample()
+    val calculator = Calculator()
 
     @Test
     fun shouldReturn0ForInputEquals10() {
