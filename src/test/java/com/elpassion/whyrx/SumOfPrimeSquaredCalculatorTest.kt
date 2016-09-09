@@ -17,7 +17,7 @@ class SumOfPrimeSquaredCalculatorTest {
     }
 
     @Test
-    fun shouldCalculateSumOfPrimeSquaredWithCallbkack() {
+    fun shouldCalculateSumOfPrimeSquaredWithCallback() {
         val onSuccess = mock<Callback<Int>>()
         sumOfPrimeSquaredCalculator.calculateWithCallback(7, onSuccess)
         verify(onSuccess).call(1 + 4 + 9 + 25)
