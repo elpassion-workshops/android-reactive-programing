@@ -22,4 +22,9 @@ class CalculatorTest {
         assertEquals(1, calculator.square(1))
         assertEquals(4, calculator.square(2))
     }
+
+    @Test
+    fun shouldSumUp() {
+        assertEquals(6, calculator.sum(listOf(1, 2, 3)))
+    }
 }

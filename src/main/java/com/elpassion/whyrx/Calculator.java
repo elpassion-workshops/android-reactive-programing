@@ -1,5 +1,7 @@
 package com.elpassion.whyrx;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -21,5 +23,9 @@ public class Calculator {
 
     Integer square(Integer base) {
         return base * base;
+    }
+
+    Integer sum(@NotNull List<Integer> list) {
+        return list.stream().reduce(0, Integer::sum);
     }
 }
