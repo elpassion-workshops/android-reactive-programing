@@ -1,5 +1,7 @@
 package com.elpassion.whyrx;
 
+import rx.Observable;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,10 +10,12 @@ public class SumOfPrimeSquaredCalculator {
 
     private final Calculator calculator;
     private final CallbackCalculator callbackCalculator;
+    private final RxCalculator rxCalculator;
 
-    public SumOfPrimeSquaredCalculator(Calculator calculator, CallbackCalculator callbackCalculator) {
+    public SumOfPrimeSquaredCalculator(Calculator calculator, CallbackCalculator callbackCalculator, RxCalculator rxCalculator) {
         this.calculator = calculator;
         this.callbackCalculator = callbackCalculator;
+        this.rxCalculator = rxCalculator;
     }
 
     public int calculateSynchronously(int limit) {
@@ -41,5 +45,14 @@ public class SumOfPrimeSquaredCalculator {
 
     private void sum(List<Integer> squaredPrimes, Callback<Integer> onSuccess) {
         callbackCalculator.sum(squaredPrimes, onSuccess);
+    }
+
+    public Observable<Integer> calculateWithRx(int limit) {
+        return rxCalculator.generateAll(limit)
+                .flatMap(rxCalculator::filterPrimes)
+                .flatMap(Observable::from)
+                .flatMap(rxCalculator::square)
+                .toList()
+                .flatMap(rxCalculator::sum);
     }
 }
