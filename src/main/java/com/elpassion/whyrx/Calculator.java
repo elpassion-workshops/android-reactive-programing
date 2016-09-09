@@ -10,4 +10,12 @@ public class Calculator {
     List<Integer> generateAll(Integer limit) {
         return IntStream.range(1, limit).boxed().collect(toList());
     }
+
+    List<Integer> filterPrimes(List<Integer> input) {
+        return input.stream().filter(this::isPrime).collect(toList());
+    }
+
+    private boolean isPrime(Integer number) {
+        return IntStream.range(2, number).filter((i) -> number % i == 0).limit(1).count() == 0;
+    }
 }

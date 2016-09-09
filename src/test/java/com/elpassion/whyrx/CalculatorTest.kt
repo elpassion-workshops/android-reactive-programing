@@ -11,4 +11,9 @@ class CalculatorTest {
     fun shouldGenerateFullRangeOfIntegers() {
         assertEquals(listOf(1, 2, 3, 4), calculator.generateAll(5))
     }
+
+    @Test
+    fun shouldFilterPrimes() {
+        assertEquals(listOf(1, 2, 3), calculator.filterPrimes(listOf(1, 2, 3, 4)))
+    }
 }
