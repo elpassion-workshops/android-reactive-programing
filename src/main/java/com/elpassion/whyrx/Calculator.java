@@ -18,4 +18,8 @@ public class Calculator {
     private boolean isPrime(Integer number) {
         return IntStream.range(2, number).filter((i) -> number % i == 0).limit(1).count() == 0;
     }
+
+    Integer square(Integer base) {
+        return base * base;
+    }
 }
