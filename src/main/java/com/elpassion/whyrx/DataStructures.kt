@@ -7,4 +7,5 @@ data class User(
 
 data class UserDetails(
         val name: String,
-        val friendsCount: Int)
+        val friendsCount: Int,
+        val realFriends: Int)

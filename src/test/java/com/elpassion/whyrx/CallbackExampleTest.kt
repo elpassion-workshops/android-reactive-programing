@@ -17,7 +17,7 @@ class UserServiceTest {
     private val friendId = "friendId"
     private val user = User("userId", "User name", listOf(friendId))
     private val friend = User(friendId, "Friend name", listOf())
-    private val userDetails = UserDetails("User name", 1)
+    private val userDetails = UserDetails("User name", 1, 0)
 
     @Test
     fun callbackUserServiceShouldShowUserDetailsOnSuccess() {
